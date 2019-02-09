@@ -1,0 +1,10 @@
+{
+    "name": "ngprobe",
+    "version": "1.0.0",
+    "description": "Extends the Chrome Devetools by adding a sidebar that displays the Angular Component associated with element($0) selected in Elements tab.",
+    "icons": {
+        "128": "ngprobe128.png"
+    },
+    "devtools_page": "ngprobe.html",
+    "manifest_version": 2
+}
