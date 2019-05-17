@@ -1,6 +1,6 @@
 # ngprobe
 
-Chrome Devetools Elements sidebar to displays Angular Component or AngularJS Scope for selected element i.e. $0.
+Chrome Devetools Elements sidebar to displays Angular Component and AngularJS Scope for selected element i.e. $0.
 
 ## How it works
 
