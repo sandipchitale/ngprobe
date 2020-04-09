@@ -5,24 +5,44 @@
       function angularComponent() {
         function getPanelContents() {
           var detected,
+              detectedIvy,
               detectedAngular,   node,          parentNode,          parentNodes = [],
               detectedAngularJS, nodeAngularJS, parentNodeAngularJS, parentNodesAngularJS = [],
               error;
           try {
             if ((window.ng && window.ng.probe) || window.angular && window.angular.element) {
               detected = true;
-              if (window.ng && window.ng.probe) {
-                if (window.ng.probe($0) && window.ng.probe($0).componentInstance) {
-                  detectedAngular = true;
-                  node =  window.ng.probe($0).componentInstance;
-                  parentNode = window.ng.probe($0);
-                  if (parentNode) {
-                    parentNode = parentNode.parent;
-                    while (parentNode && parentNode.componentInstance) {
-                      if (node !== parentNode.componentInstance && parentNodes.indexOf(parentNode.componentInstance) === -1) {
-                        parentNodes.unshift(parentNode.componentInstance);
+              detectedIvy = false;
+              if (window.ng) {
+                if (window.ng.getComponent) {
+                  if (window.ng.getComponent($0)) {
+                    detectedIvy = true;
+                    detectedAngular = true;
+                    node =  window.ng.getComponent($0);
+                    parentNode = node;
+                    if (parentNode) {
+                      parentNode = ng.getOwningComponent(parentNode);
+                      while (parentNode) {
+                        if (parentNodes.indexOf(parentNode) === -1) {
+                          parentNodes.unshift(parentNode);
+                        }
+                        parentNode = ng.getOwningComponent(parentNode);
                       }
+                    }
+                  }
+                } else if (window.ng.probe) {
+                  if (window.ng.probe($0) && window.ng.probe($0).componentInstance) {
+                    detectedAngular = true;
+                    node =  window.ng.probe($0).componentInstance;
+                    parentNode = window.ng.probe($0);
+                    if (parentNode) {
                       parentNode = parentNode.parent;
+                      while (parentNode && parentNode.componentInstance) {
+                        if (node !== parentNode.componentInstance && parentNodes.indexOf(parentNode.componentInstance) === -1) {
+                          parentNodes.unshift(parentNode.componentInstance);
+                        }
+                        parentNode = parentNode.parent;
+                      }
                     }
                   }
                 }
@@ -47,7 +67,7 @@
           }
           if (detectedAngular && detectedAngularJS) {
             return {
-              $1$_framework_______: '_______ Angular Components ______',
+              $1$_framework_______: (detectedIvy ?  '_______ Angular (Ivy) Components _' : '_______ Angular Components ______'),
               $1$_parentComponents: parentNodes,
               $1__component_______: node,
               $2__________________: '_________________________________',

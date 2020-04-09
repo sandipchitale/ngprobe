@@ -1,7 +1,7 @@
 {
     "name": "ngprobe",
-    "version": "1.0.1",
-    "description": "Chrome Devetools Elements sidebar to displays Angular Component and AngularJS Scope for selected element i.e. $0",
+    "version": "1.0.2",
+    "description": "Chrome Devetools Elements sidebar to displays Angular Component (pre-Ivy and Ivy) and AngularJS Scope for selected element i.e. $0",
     "icons": {
         "128": "ngprobe128.png"
     },
