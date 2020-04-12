@@ -4,13 +4,12 @@ Chrome Devetools Elements sidebar to displays Angular (pre-Ivy and Ivy) Componen
 
 ## How it works
 
-The extension evaluates the following expression in the context of the page and dsiplays the results in ```ngprobe``` sidebar pane :
-
+The extension evaluates the following expression in the context of the page and dsiplays the results in ```ngprobe``` sidebar pane.
 
 If Angular (Ivy) is detecetd:
 
 ```
-    ng.getComponent($0)
+    ng.getOwningComponent($0)
 
     where:
 
@@ -39,3 +38,5 @@ If AngularJS is detecetd:
 ```
 
 Also shows parent components and scopes as an array.
+
+The values of component properties can be edited in the ```ngprobe``` sidebar pane.
