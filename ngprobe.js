@@ -14,11 +14,11 @@
               detected = true;
               detectedIvy = false;
               if (window.ng) {
-                if (window.ng.getOwningComponent) {
-                  if (window.ng.getOwningComponent($0)) {
+                if (window.ng.getComponent && window.ng.getOwningComponent) {
+                  if (window.ng.getComponent($0) || window.ng.getOwningComponent($0)) {
                     detectedIvy = true;
                     detectedAngular = true;
-                    node =  window.ng.getOwningComponent($0);
+                    node = window.ng.getComponent($0) || window.ng.getOwningComponent($0);
                     parentNode = node;
                     if (parentNode) {
                       parentNode = ng.getOwningComponent(parentNode);

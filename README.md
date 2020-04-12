@@ -9,7 +9,7 @@ The extension evaluates the following expression in the context of the page and 
 If Angular (Ivy) is detecetd:
 
 ```
-    ng.getOwningComponent($0)
+    ng.getComponent($0) || ng.getOwningComponent($0)
 
     where:
 
