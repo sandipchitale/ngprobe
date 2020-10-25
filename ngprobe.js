@@ -10,7 +10,7 @@
               detectedAngularJS, nodeAngularJS, parentNodeAngularJS, parentNodesAngularJS = [],
               error;
           try {
-            if ((window.ng && window.ng.probe) || window.angular && window.angular.element) {
+            if (window.ng || window.angular && window.angular.element) {
               detected = true;
               detectedIvy = false;
               if (window.ng) {
