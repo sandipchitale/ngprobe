@@ -15,19 +15,27 @@
               detectedIvy = false;
               if (window.ng) {
                 if (window.ng.getComponent && window.ng.getOwningComponent) {
-                  if (window.ng.getComponent($0) || window.ng.getOwningComponent($0)) {
-                    detectedIvy = true;
-                    detectedAngular = true;
-                    node = window.ng.getComponent($0) || window.ng.getOwningComponent($0);
-                    parentNode = node;
-                    if (parentNode) {
-                      parentNode = ng.getOwningComponent(parentNode);
-                      while (parentNode) {
-                        if (parentNodes.indexOf(parentNode) === -1) {
-                          parentNodes.unshift(parentNode);
-                        }
+                  // Angular 9+
+                  let e = $0;
+                  while (e) {
+                    if (window.ng.getComponent(e) || window.ng.getOwningComponent(e)) {
+                      detectedIvy = true;
+                      detectedAngular = true;
+                      node = window.ng.getComponent(e) || window.ng.getOwningComponent(e);
+                      parentNode = node;
+                      if (parentNode) {
                         parentNode = ng.getOwningComponent(parentNode);
+                        while (parentNode) {
+                          if (parentNodes.indexOf(parentNode) === -1) {
+                            parentNodes.unshift(parentNode);
+                          }
+                          parentNode = ng.getOwningComponent(parentNode);
+                        }
                       }
+                      break;
+                    } else {
+                      // Keep trying parent elements
+                      e = e.parentElement;
                     }
                   }
                 } else if (window.ng.probe) {
